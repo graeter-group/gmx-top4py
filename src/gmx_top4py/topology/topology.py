@@ -37,7 +37,7 @@ from gmx_top4py.topology.utils import (
     get_moleculetype_atomics,
     get_moleculetype_header,
     get_residue_by_bonding,
-    get_residue_fragments,
+    # get_residue_fragments,
     get_top_section,
     increment_field,
     is_not_solvent_or_ion,
