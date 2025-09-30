@@ -490,17 +490,17 @@ class TestTopology:
 
 
 class TestHexalaTopology:
-    @pytest.fixture
-    def top_break_29_35_fix(self, filedir) -> Topology:
-        hexala_top = read_top(filedir / "hexala_break29-35.top")
-        return Topology(hexala_top)
+    # @pytest.fixture
+    # def top_break_29_35_fix(self, filedir) -> Topology:
+    #     hexala_top = read_top(filedir / "hexala_break29-35.top")
+    #     return Topology(hexala_top)
 
-    @pytest.fixture
-    def top_hat_34_to_29_fix(self, filedir) -> Topology:
-        hexala_top = read_top(filedir / "hexala_hat34-29.top")
-        return Topology(
-            hexala_top,
-        )
+    # @pytest.fixture
+    # def top_hat_34_to_29_fix(self, filedir) -> Topology:
+    #     hexala_top = read_top(filedir / "hexala_hat34-29.top")
+    #     return Topology(
+    #         hexala_top,
+    #     )
 
     def test_all_terms_accounted_for(self, raw_hexala_top_fix, hexala_top_fix):
         atoms = get_protein_section(raw_hexala_top_fix, "atoms")
@@ -871,10 +871,10 @@ class TestRadicalAla:
         hexala_top = read_top(filedir / "Ala_R_noprm.top")
         return Topology(hexala_top, radicals="9")
 
-    @pytest.fixture
-    def top_prm_fix(self, filedir) -> Topology:
-        hexala_top = read_top(filedir / "Ala_R_prm.top")
-        return Topology(hexala_top)
+    # @pytest.fixture
+    # def top_prm_fix(self, filedir) -> Topology:
+    #     hexala_top = read_top(filedir / "Ala_R_prm.top")
+    #     return Topology(hexala_top)
 
     def test_is_radical(self, top_noprm_fix):
         assert top_noprm_fix.atoms["9"].is_radical == True
@@ -972,11 +972,11 @@ class TestRadicalAla:
 
 
 class TestDimerization:
-    @pytest.fixture
-    def top_init(self, filedir) -> Topology:
-        return Topology.from_path(
-            filedir / "TdT_inital.top", ffdir=filedir / "amber14sb_OL21_mod.ff"
-        )
+    # @pytest.fixture
+    # def top_init(self, filedir) -> Topology:
+    #     return Topology.from_path(
+    #         filedir / "TdT_inital.top", ffdir=filedir / "amber14sb_OL21_mod.ff"
+    #     )
 
     @pytest.fixture
     def top_target(self, filedir) -> Topology:
