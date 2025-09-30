@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gmx-top4py"
+version = "0.0.0"
+readme = "README.md"
+
+[tool.setuptools.packages.find]
+where=["src"]
+
+[tool.setuptools]
+include-package-data = true
