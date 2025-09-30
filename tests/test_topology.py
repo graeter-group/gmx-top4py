@@ -246,7 +246,7 @@ class TestUrea:
     def test_merging_solvent(self, hexala_rawtop_fix):
         top = Topology(
             deepcopy(hexala_rawtop_fix),
-            is_included_moleculetype_f=lambda mol: mol in ["Protein", "SOL"],
+            is_selected_moleculetype_f=lambda mol: mol in ["Protein", "SOL"],
         )
         assert len(top.atoms) == 38013
         assert top.atoms["73"].resnr == "9"
