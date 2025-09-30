@@ -198,6 +198,7 @@ class TestUrea:
         assert len(top.proper_dihedrals) == 16
         assert len(top.improper_dihedrals) == 6
         assert top.moleculetypes[top.selected_moleculetype].atoms == top.atoms
+        assert top.selected_moleculetype == "Urea(2x)"
         for i in range(8):
             n1 = str(i + 1)
             n2 = str(i + 9)
@@ -219,6 +220,7 @@ class TestUrea:
         assert len(top.proper_dihedrals) == 16
         assert len(top.improper_dihedrals) == 6
         assert top.moleculetypes[top.selected_moleculetype].atoms == top.atoms
+        assert top.selected_moleculetype == "Urea1(1x)-Urea2(1x)"
         for i in range(8):
             n1 = str(i + 1)
             n2 = str(i + 9)
