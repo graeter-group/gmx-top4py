@@ -728,12 +728,12 @@ class Topology:
         [](`kimmdy.parsing.read_top`)
     parametrizer
         The parametrizer to use when reparametrizing the topology.
-    is_included_moleculetype_f
-        A function that takes a moleculetype name and returns True if the moleculetype is to be included. 
-        Use this function to mark one or more moleculetypes, e.g. for modificiation by atom deletion, bond breaking or forming later on.
-        If an included moleculetype has multiple copies, this multiplicity of the moleculetype will be made explicit.
-        If multiple different moleculetypes are included, they will be merged into one moleculetype.
-        By default, all non-solvent and non-ion moleculetypes are included.
+    is_selected_moleculetype_f
+        A function that takes a moleculetype name and returns True if the moleculetype is selected. 
+        Use this function to mark one or more moleculetypes.
+        If an selected moleculetype has multiple copies, this multiplicity of the moleculetype will be made explicit.
+        If multiple different moleculetypes are selected, they will be merged into one moleculetype.
+        By default, all non-solvent and non-ion moleculetypes are selected.
     radicals
         A string of atom numbers that are radicals.
     residuetypes_path
@@ -785,7 +785,7 @@ class Topology:
         self,
         top: TopologyDict,
         parametrizer: Parameterizer = BasicParameterizer(),
-        is_included_moleculetype_f: Callable[[str], bool] = is_not_solvent_or_ion,
+        is_selected_moleculetype_f: Callable[[str], bool] = is_not_solvent_or_ion,
         radicals: Optional[str] = None,
         residuetypes_path: Optional[Path] = None,
         nrexcl: Optional[str] = None,
@@ -805,7 +805,7 @@ class Topology:
         self.ff = FF(top, residuetypes_path)
         self._parse_molecules()
         self.parametrizer = parametrizer
-        self._check_is_included_molecule = is_included_moleculetype_f
+        self._check_is_selected_molecule = is_selected_moleculetype_f
 
         self.needs_parameterization: bool = False
         self.parameterization_focus_ids: set[str] = set()
@@ -837,16 +837,16 @@ class Topology:
         """Extract all selected molecules that are to be merged into one moleculetype.
         And replace the selected moleculetypes with a single moleculetype name
 
-        The new moleculetype name is a concatenation of all included moleculetypes
+        The new moleculetype name is a concatenation of all selected moleculetypes
         with their multiplicity in brackets, e.g. 'MOL1(2x)-MOL2(1x)-MOL3(4x)'.
         """
-        included_molecules = {}
+        selected_molecules = {}
         new_molecules = []
         started_merging = False
         stopped_merging = False
 
         for m, n in self.molecules:
-            if self._check_is_included_molecule(m):
+            if self._check_is_selected_molecule(m):
                 if stopped_merging:
                     m = f"""Attempting to merge a moleculetype {m} interspersed with non-merging moleculetypes.
             Please make sure that all moleculetypes to be merged (all non-solvent molecules or ions by default)
@@ -855,38 +855,38 @@ class Topology:
                     logger.error(m)
                     raise ValueError(m)
                 started_merging = True
-                included_molecules[m] = int(n)
+                selected_molecules[m] = int(n)
             else:
                 if started_merging:
                     stopped_merging = True
                 new_molecules += [(m, n)]
 
         self.molecules = new_molecules
-        self.selected_moleculetype = "-".join([f"{m}({n}x)" for m, n in included_molecules.items()])
+        self.selected_moleculetype = "-".join([f"{m}({n}x)" for m, n in selected_molecules.items()])
         new_molecules.insert(0, (self.selected_moleculetype, "1"))  # The selected moleculetype is inserted at the start of the list to comply with previous code behaviour
         logger.debug(
             f"Merging the following molecules into a single moleculetype called {self.selected_moleculetype} and making their multiples explicit:"
         )
-        for m, n in included_molecules.items():
+        for m, n in selected_molecules.items():
             logger.debug(f"\t{m} {n}")
-        return included_molecules
+        return selected_molecules
 
     def _merge_moleculetypes(
         self, radicals: Optional[str] = None, nrexcl: Optional[str] = None
     ):
         """
-        Merge all included moleculetypes into one moleculetype.
+        Merge all selected moleculetypes into one moleculetype.
         This also makes multiples explicit.
-        Included molecules have to be in a continuous block in the [molecules] section of the topology
+        Selected molecules have to be in a continuous block in the [molecules] section of the topology
         and the gro file, preferably the start.
         Atom ids (gromacs, 1-based) are updated accordingly and thus correspond directly
         to the atom numbers in the coordinates file (.gro) (ignoring gromacs overflow
         problems in the atomnr column, the correct internal atom nr is always "gro file line number" - 2).
         """
         molecules = self._extract_mergable_molecules()
-        first_included_molecule = list(molecules.keys())[0]
+        first_selected_molecule = list(molecules.keys())[0]
         if nrexcl is None:
-            nrexcl = self.moleculetypes[first_included_molecule].nrexcl
+            nrexcl = self.moleculetypes[first_selected_molecule].nrexcl
         merged_atomics = {}
         atomnr_offset = 0
         resnr_offset = 0
@@ -969,7 +969,7 @@ class Topology:
                 )
                 continue
             name = header.name
-            # Only search for radicals in the included moleculetypes during merging
+            # Only search for radicals in the selected moleculetypes during merging
             self.moleculetypes[name] = MoleculeType(header, atomics, radicals="")
 
     def __eq__(self, other: object) -> bool:
