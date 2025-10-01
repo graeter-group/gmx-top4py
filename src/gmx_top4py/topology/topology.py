@@ -4,7 +4,7 @@ from copy import copy, deepcopy
 from pathlib import Path
 from typing import Callable, Optional, Union
 
-from kimmdy.recipe import RecipeStep, Bind, Break
+# from kimmdy.recipe import RecipeStep, Bind, Break
 
 from gmx_top4py.constants import (
     ATOM_ID_FIELDS,
