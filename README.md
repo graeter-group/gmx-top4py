@@ -12,7 +12,6 @@ git clone git@github.com:graeter-group/gmx-top4py.git
 cd gmx-top4py
 ```
 Install repository
-a) uv.lock
 ```bash
 uv sync
 ```
