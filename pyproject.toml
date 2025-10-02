@@ -1,14 +1,91 @@
 [build-system]
-requires = ["setuptools>=42", "wheel"]
+requires = ["setuptools>=61.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "gmx-top4py"
 version = "0.0.0"
-readme = "README.md"
+description = "A Python library to parse GROMACS topology files and alter associated force fields parameters."
+license-files = ["LICEN[CS]E*"]
+authors = [{ name = "graeter-group", email = "ak-graeter@mpip-mainz.mpg.de"}]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+]
+requires-python = ">= 3.10, < 3.12"
+dependencies = ["numpy", "importlib_metadata"]
+
+[project.readme]
+file = "README.md"
+content-type = "text/markdown"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+include-package-data = true
+
+[tool.setuptools.package-data]
+"gmx_top4py" = [ "py.typed" ]
 
 [tool.setuptools.packages.find]
 where=["src"]
+namespaces = false
 
-[tool.setuptools]
-include-package-data = true
+[tool.uv.sources]
+"gmx_top4py" = { workspace = true }
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "pytest-cov",
+  "pytest-mock",
+  "tox",
+  "tox-uv",
+  "black",
+  "hypothesis",
+  "jupyter",
+  "griffe >= 0.33, < 1.0.0",
+  "pycallgraph2",
+  # Everything below is to speed up pip package resolution.
+  "certifi>=2025.6",
+  "jsonschema>=4.24",
+  "jsonschema-specifications>=2025.4",
+  "markdown-it-py>=3.0",
+  "pytz>=2025.2",
+  "referencing>=0.36",
+  "rich>=14.0",
+  "rpds-py>=0.26",
+  "six>=1.17",
+  "typing-extensions>=4.14",
+  "tzdata>=2025.2",
+  "watchdog>=6.0",
+  "zipp>=3.23",
+]
+
+[dependency-groups]
+dev = [
+  "pytest",
+  "pytest-cov",
+  "pytest-mock",
+  "tox",
+  "tox-uv",
+  "black",
+  "hypothesis",
+  "jupyter",
+  "griffe >= 0.33, < 1.0.0",
+  "pycallgraph2",
+  # Everything below is to speed up pip package resolution.
+  "certifi>=2025.6",
+  "jsonschema>=4.24",
+  "jsonschema-specifications>=2025.4",
+  "markdown-it-py>=3.0",
+  "pytz>=2025.2",
+  "referencing>=0.36",
+  "rich>=14.0",
+  "rpds-py>=0.26",
+  "six>=1.17",
+  "typing-extensions>=4.14",
+  "tzdata>=2025.2",
+  "watchdog>=6.0",
+  "zipp>=3.23",
+]
+
