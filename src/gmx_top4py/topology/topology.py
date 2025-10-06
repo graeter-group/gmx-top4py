@@ -725,7 +725,7 @@ class Topology:
     ----------
     top
         A dictionary containing the parsed topology data, produced by
-        [](`kimmdy.parsing.read_top`)
+        [](`gmx_top4py.parsing.read_top`)
     parametrizer
         The parametrizer to use when reparametrizing the topology.
     is_selected_moleculetype_f
