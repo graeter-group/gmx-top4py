@@ -281,20 +281,20 @@ def is_not_solvent_or_ion(name: str) -> bool:
 
 
 def get_is_selected_moleculetype_f(
-    include: list[str], exclude: list[str]
+    selected: list[str], deselected: list[str]
 ) -> Callable[[str], bool]:
     """Returns whether a moleculetype name is selected or not.
 
-    Per default, water and inorganic ions are excluded.
+    Per default, solvents and inorganic ions are deselected.
     """
-    default_excludes = [x.lower() for x in SOLVENT_NAMES + ION_NAMES]
-    exclude = [s.lower() for s in exclude]
-    include = [s.lower() for s in include]
+    default_deselected = [x.lower() for x in SOLVENT_NAMES + ION_NAMES]
+    deselected = [s.lower() for s in deselected]
+    selected = [s.lower() for s in selected]
 
     def f(name: str) -> bool:
         lower_name = name.lower()
-        return lower_name not in exclude and (
-            lower_name not in default_excludes or lower_name in include
+        return lower_name not in deselected and (
+            lower_name not in default_deselected or lower_name in selected
         )
 
     return f
