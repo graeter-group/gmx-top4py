@@ -802,7 +802,7 @@ class Topology:
             raise ValueError("molecules not found in top file")
         self.molecules = [(l[0], l[1]) for l in molecules]
 
-        self.ff = FF(top, residuetypes_path)
+        self._parse_ff(top, residuetypes_path)
         self._parse_molecules()
         self.parametrizer = parametrizer
         self._check_is_selected_molecule = is_selected_moleculetype_f
@@ -812,6 +812,9 @@ class Topology:
 
         self._merge_moleculetypes(radicals=radicals, nrexcl=nrexcl)
         self._link_atomics()
+
+    def _parse_ff(self, top: TopologyDict, residuetypes_path: Optional[Path] = None):
+        self.ff = FF(top, residuetypes_path)
 
     def _link_atomics(self):
         """link atoms, bonds etc. properties of the selected moleculetype(s) to self.
