@@ -1,5 +1,5 @@
 """
-Constants used throughout gmx-wrapper
+Constants used throughout gmx-top4py.
 """
 
 # nN_per_kJ_per_mol_nm = 0.001661
