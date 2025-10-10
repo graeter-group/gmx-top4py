@@ -16,7 +16,7 @@ from gmx_top4py.utils import get_gmx_dir
 
 logger = logging.getLogger(__name__)
 TopologyDict = dict
-"""A raw representation of a topology file returned by [](`~kimmdy.parsing.read_top`).
+"""A raw representation of a topology file returned by [](`~gmx-top4py.parsing.read_top`).
 """
 
 
