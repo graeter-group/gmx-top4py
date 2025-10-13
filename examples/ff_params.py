@@ -21,7 +21,7 @@ print("Atomic charges before modification:")
 for atom_id in ["11", "12", "13", "14"]:
     print(top.atoms[atom_id])
 
-top.atoms["11"].charge = -0.3 # CB atom of the first ala residue
+top.atoms["11"].charge = -0.3  # CB atom of the first ala residue
 top.atoms["12"].charge = 0.1  # HB1 atom of the first ala residue
 top.atoms["13"].charge = 0.1  # HB2 atom
 top.atoms["14"].charge = 0.1  # HB3 atom
@@ -34,9 +34,13 @@ for atom_id in ["11", "12", "13", "14"]:
 # Example: Change the bond length and force constant of the bond between the CB atom and the CA atom of the first Ala residue
 top = deepcopy(original_top)
 print("Bond information before modification:")
-print(top.bonds[("9", "11")])  # Bond between the CA atom (= atom 9) and the CB atom (= atom 9) of the first Ala residue
+print(
+    top.bonds[("9", "11")]
+)  # Bond between the CA atom (= atom 9) and the CB atom (= atom 9) of the first Ala residue
 
-print("\nAs the equilibrium bond length (c0) and the force constant (c1) are None, the bonded parameters for this CA-CB bond are taken from the bond type in the force field:")
+print(
+    "\nAs the equilibrium bond length (c0) and the force constant (c1) are None, the bonded parameters for this CA-CB bond are taken from the bond type in the force field:"
+)
 print(top.ff.bondtypes[("CA", "CB")])
 
 top.bonds[("9", "11")].c0 = 0.15  # New bond length in nm
@@ -45,7 +49,7 @@ top.bonds[("9", "11")].c1 = 500000.0  # New force constant in kJ mol-1 nm-2
 print("\nBond information after modification:")
 print(top.bonds[("9", "11")])
 
-# %% 
+# %%
 # We can also modify the parameters of all bonds of a certain type
 # by overriding the parameters of the bond type in the force field
 # Example: Change the bond length and force constant of all CA-CB bonds
@@ -58,6 +62,8 @@ top.ff.bondtypes[("CA", "CB")].c1 = 500000.0  # New force constant in kJ mol-1 n
 
 print("\nCA-CB bond parameters after modification:")
 print(top.ff.bondtypes[("CA", "CB")])
+
+
 # %%
 # For more complex modifications of the topology, one can implement a custom Parameterizer class
 # Example: Change the N-CA-CB-HBX proper dihedral parameters only for Ala residues
@@ -65,7 +71,7 @@ class MyParameterizer(Parameterizer):
     def parameterize_topology(
         self, current_topology: Topology, focus_nrs: set[str] | None = None
     ) -> Topology:
-        # iterate over all proper dihedrals  
+        # iterate over all proper dihedrals
         for proper in current_topology.proper_dihedrals.values():
             # Only modify proper dihedrals in Ala residues
             if current_topology.atoms[proper.ai].residue == "ALA":
@@ -76,19 +82,32 @@ class MyParameterizer(Parameterizer):
                     current_topology.atoms[proper.ak].atom,
                     current_topology.atoms[proper.al].atom,
                 )
-                if atom_names in [("N", "CA", "CB", "HB1"), ("N", "CA", "CB", "HB2"), ("N", "CA", "CB", "HB3")]:
+                if atom_names in [
+                    ("N", "CA", "CB", "HB1"),
+                    ("N", "CA", "CB", "HB2"),
+                    ("N", "CA", "CB", "HB3"),
+                ]:
                     # Change the parameters of the N-CA-CB-HBX proper dihedral
-                    proper.dihedrals[''] = Dihedral(proper.ai, proper.aj, proper.ak, proper.al, funct="9", c0="180.0", c1="2.0")
+                    proper.dihedrals[""] = Dihedral(
+                        proper.ai,
+                        proper.aj,
+                        proper.ak,
+                        proper.al,
+                        funct="9",
+                        c0="180.0",
+                        c1="2.0",
+                    )
         return current_topology
 
-top = deepcopy(original_top)  
+
+top = deepcopy(original_top)
 # Assign the new parameterizer to the topology
 top.parametrizer = MyParameterizer()
 # Please note that the parameters are only updated when needs_parameterization is set to True
 top.needs_parameterization = True
 # Now we can update the parameters
 # a) Directly in the topology instance by calling update_parameters() explicitly
-top.update_parameters() 
+top.update_parameters()
 # b) when writing the topology to dict
 top_dict = top.to_dict()
 # c) or when writing the topology to a file
