@@ -1,10 +1,6 @@
-<h2 align="center">gmx-top4py</h2>
+# gmx-top4py - GROMACS topology files for python
 
-<h3 align="center">GROMACS topology files for python</h3>
-
----
-
-<p align="center">
+<p align="left">
 <a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 </p>
 
