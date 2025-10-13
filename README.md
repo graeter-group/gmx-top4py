@@ -1,10 +1,24 @@
-# gmx-top4py
-## Scope
-Python interface to
-* Read and write GROMACS-type top-files
-* Alter force field parameters 
+<h2 align="center">gmx-top4py</h2>
+
+<h3 align="center">GROMACS topology files for python</h3>
+
+---
+
+<p align="center">
+<a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
+</p>
+
+## Description
+The package gmx-top4py provides an python interface to
+* read and write toplogy and force field information from GROMACS-type top-files
+* alter force field parameters 
+
+## Tutorials
+* [ff_params.py](examples/ff_params.py) - Adapting force field parameter with gmx-top4py
 
 ## Installation
+### From pipy
+Coming soon
 ### From source via uv
 Clone repository and move into
 ```bash
