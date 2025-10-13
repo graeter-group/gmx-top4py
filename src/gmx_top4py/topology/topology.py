@@ -729,7 +729,7 @@ class Topology:
     parametrizer
         The parametrizer to use when reparametrizing the topology.
     is_selected_moleculetype_f
-        A function that takes a moleculetype name and returns True if the moleculetype is selected. 
+        A function that takes a moleculetype name and returns True if the moleculetype is selected.
         Use this function to mark one or more moleculetypes.
         If an selected moleculetype has multiple copies, this multiplicity of the moleculetype will be made explicit.
         If multiple different moleculetypes are selected, they will be merged into one moleculetype.
@@ -865,8 +865,12 @@ class Topology:
                 new_molecules += [(m, n)]
 
         self.molecules = new_molecules
-        self.selected_moleculetype = "-".join([f"{m}({n}x)" for m, n in selected_molecules.items()])
-        new_molecules.insert(0, (self.selected_moleculetype, "1"))  # The selected moleculetype is inserted at the start of the list to comply with previous code behaviour
+        self.selected_moleculetype = "-".join(
+            [f"{m}({n}x)" for m, n in selected_molecules.items()]
+        )
+        new_molecules.insert(
+            0, (self.selected_moleculetype, "1")
+        )  # The selected moleculetype is inserted at the start of the list to comply with previous code behaviour
         logger.debug(
             f"Merging the following molecules into a single moleculetype called {self.selected_moleculetype} and making their multiples explicit:"
         )

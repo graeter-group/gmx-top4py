@@ -1,5 +1,4 @@
-"""Base classes and basic instances for parameterizing topologies.
-"""
+"""Base classes and basic instances for parameterizing topologies."""
 
 from __future__ import annotations
 

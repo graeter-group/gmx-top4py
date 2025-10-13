@@ -6,7 +6,7 @@ import pytest
 from hypothesis import HealthCheck, given, settings
 from hypothesis import strategies as st
 
-from gmx_top4py.parsing import read_top, write_top   
+from gmx_top4py.parsing import read_top, write_top
 from gmx_top4py.constants import AA3
 from gmx_top4py.utils import get_gmx_dir
 
@@ -174,105 +174,3 @@ def test_parse_ffbonded_read_top():
     assert all(
         len(x) == 8 for x in ffbonded_dict["dihedraltypes"]["content"]
     ), "Unexpected number of elements in dihedraltypes"
-
-
-## test plumed parsing
-# def test_plumed_read(arranged_tmp_path):
-#     plumed_dict = parsing.read_plumed(Path("plumed.dat"))
-
-#     assert set(plumed_dict.keys()) == set(["labeled_action", "prints", "other"])
-#     assert isinstance(plumed_dict["labeled_action"], dict)
-#     assert len(plumed_dict["labeled_action"]) == 12
-#     assert isinstance(plumed_dict["prints"], list)
-#     assert plumed_dict["prints"][0]["FILE"] == Path("distances.dat")
-
-
-# def test_plumed_read_distances(arranged_tmp_path):
-#     distances = parsing.read_distances_dat(Path("distances.dat"))
-#     assert distances
-#     assert list(distances[0.0]) == [
-#         "d0",
-#         "d1",
-#         "d2",
-#         "d3",
-#         "d4",
-#         "d5",
-#         "d6",
-#         "d7",
-#         "d8",
-#         "d9",
-#         "d10",
-#         "d11",
-#     ]
-#     assert list(distances.keys())[0] == 0.0
-#     assert list(distances.keys())[-1] == 100.0
-
-
-# def test_plumed_write_identity(arranged_tmp_path):
-#     plumed_dict = parsing.read_plumed(Path("plumed.dat"))
-#     plumed_mod_path = Path("plumed_mod.dat")
-#     parsing.write_plumed(plumed_dict, plumed_mod_path)
-#     plumed_mod_dict = parsing.read_plumed(plumed_mod_path)
-
-#     assert plumed_mod_dict == plumed_dict
-
-
-# ## test json parsing
-
-# ## test misc file parsing
-
-
-# def test_edissoc_read(arranged_tmp_path):
-#     edissoc_dict = parsing.read_edissoc(Path("edissoc.dat"))
-#     assert len(edissoc_dict.keys()) == 14
-#     assert edissoc_dict.get("ALA") is not None
-#     assert edissoc_dict.get("GLY") is not None
-#     for k, v in edissoc_dict.items():
-#         for kv, vv in v.items():
-#             assert isinstance(kv, tuple)
-#             assert isinstance(vv, float)
-
-
-# def test_edissoc_read_correct_error(arranged_tmp_path):
-#     # works with and without spacs around keys in `[ ... ]`
-#     # should throw ValueError if the file is not formatted correctly
-#     with pytest.raises(ValueError):
-#         edissoc_dict = parsing.read_edissoc(Path("edissoc-error.dat"))
-
-
-# def test_marker_file_parsing(tmp_path: Path):
-#     parsing.write_time_marker(tmp_path / "marker_file1", "event1")
-#     parsing.write_time_marker(tmp_path / "marker_file2", "event1")
-#     parsing.write_time_marker(tmp_path / "marker_file2", "event2")
-#     parsing.write_time_marker(tmp_path / "marker_file2", "event3")
-#     parsing.write_time_marker(tmp_path / "marker_file2", "event2")
-
-#     es1, ts1 = parsing.read_time_marker(tmp_path / "marker_file1")
-#     es2, ts2 = parsing.read_time_marker(tmp_path / "marker_file2")
-
-#     assert len(es1) == len(ts1) == 1
-#     assert len(es2) == len(ts2) == 4
-
-#     assert "event1" in es1
-#     assert "event0" not in es1
-
-#     assert "event0" not in es2
-#     assert "event1" in es2
-#     assert "event2" in es2
-#     assert "event3" in es2
-
-#     assert (ts2[1] - ts2[0]).total_seconds() > 0
-
-
-# def test_read_mdp(arranged_tmp_path: Path):
-#     md = read_mdp(Path("md.mdp"))
-#     relax = read_mdp(Path("md_slow_growth.mdp"))
-
-#     assert md["integrator"] == "md"
-#     assert md["nsteps"] == 5000
-#     assert md["dt"] == 0.002
-#     assert md["nstxout"] == 500
-#     assert md["nstxout-compressed"] == 500
-
-#     assert relax["integrator"] == "md"
-#     assert relax["free-energy"] == True

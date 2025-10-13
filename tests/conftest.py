@@ -7,41 +7,6 @@ import pytest
 import shutil
 import os
 from pathlib import Path
-# from dataclasses import dataclass
-# from typing import Callable
-# from kimmdy.plugins import discover_plugins
-
-# from kimmdy.tasks import TaskFiles
-# from gmx_top4py.utils import get_gmx_dir
-
-
-## create pytest mark decorators ##
-#  register marker
-# def pytest_configure(config):
-#     # register an additional mark
-#     config.addinivalue_line(
-#         "markers", "require_gmx: mark test to run if gmx is executable"
-#     )
-#     config.addinivalue_line(
-#         "markers", "require_grappa: mark test to run if grappa is available"
-#     )
-
-
-# # look for mark and define mark action
-# def pytest_runtest_setup(item):
-#     require_gmx = [mark for mark in item.iter_markers(name="require_gmx")]
-#     if require_gmx:
-#         if not get_gmx_dir():
-#             pytest.skip(
-#                 f"{item.name} skipped. Command 'gmx' not found, can't test gmx dir parsing."
-#             )
-
-#     require_grappa = [mark for mark in item.iter_markers(name="require_grappa")]
-#     if require_grappa:
-#         try:
-#             import grappa
-#         except ModuleNotFoundError:
-#             pytest.skip(f"{item.name} skipped. Can't import module grappa.")
 
 
 # fixtures for setup and teardown ##
@@ -71,12 +36,3 @@ def arranged_tmp_path(tmp_path: Path, request: pytest.FixtureRequest):
     # change cwd to tmp_path
     os.chdir(tmp_path.resolve())
     return tmp_path
-
-
-# ## dummy classes ##
-# @dataclass
-# class DummyFiles(TaskFiles):
-#     get_latest: Callable = lambda: f"DummyCallable"
-
-
-## general object fixtures ##

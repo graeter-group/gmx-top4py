@@ -88,19 +88,6 @@ class PositionRestraint:
         )
 
 
-# [ position_restraints ]
-# ; you wouldn't normally use this for a molecule like Urea,
-# ; but we include it here for didactic purposes
-# ; ai   funct    fc
-#    1     1     1000    1000    1000 ; Restrain to a point
-#    2     1     1000       0    1000 ; Restrain to a line (Y-axis)
-#    3     1     1000       0       0 ; Restrain to a plane (Y-Z-plane)
-# [ dihedral_restraints ]
-# ; ai   aj    ak    al  type  phi  dphi  fc
-#     3    6     1    2     1  180     0  10
-#     1    4     3    5     1  180     0  10
-
-
 @dataclass()
 class DihedralRestraint:
     """Information about one dihedral restraint.
