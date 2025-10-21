@@ -235,6 +235,11 @@ class TestUrea:
         assert top.atoms["80"].resnr == "11"
         assert top.atoms["81"].resnr == "11"
 
+    def test_to_path(self, raw_urea_top_fix):
+        top = Topology(deepcopy(raw_urea_top_fix))
+        out_path = Path("urea_out.top")
+        top.to_path(out_path)
+
 
 class TestTopAB:
     def test_top_ab(self, raw_top_a_fix, raw_top_b_fix):
