@@ -206,7 +206,10 @@ def attributes_to_list(obj) -> list[str]:
             continue
         if v in [None, ""]:
             continue
-        attrs.append(v)
+        if isinstance(v, (list, tuple)):
+            attrs.extend(v)
+        if isinstance(v, str):
+            attrs.append(v)
     return attrs
 
 
