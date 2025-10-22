@@ -3,70 +3,106 @@ from pathlib import Path
 from copy import deepcopy
 
 from gmx_top4py.topology.topology import Topology
-from gmx_top4py.parsing import read_top, write_top
+from gmx_top4py.parsing import read_top
 from gmx_top4py.parameterizing import Parameterizer
 from gmx_top4py.topology.atomic import Dihedral
+# %% [markdown]
+# # Manipulation of force field parameters
+# In this example, we demonstrate how to manipulate force field parameters in a topology file using gmx-top4py.
+# We will use a topology file for a hexamer of alanine ('hexala.top') parameterized with the 'amber99sb-star-ildnp.ff' force field.
 
-# Read topology file and instantiate Topology object
+# %% [markdown]
+# To get started, we need to read the topology file.
+# %%
 top_dict = read_top(Path("hexala.top"), ffdir=Path("amber99sb-star-ildnp.ff"))
 original_top = Topology(top_dict)
 
-# Write topology to file
-original_top.to_path("hexala_out.top")
-# %%
-# Manipulate partial charges of individual atoms
+# %% [markdown]
+# # 1. Manipulation of partial charges
 # Example: Change the charge of the CB atom of the first Ala residue and its attached H atoms
+# %% [markdown]
+# Inital charges
+# %%
 top = deepcopy(original_top)
 print("Atomic charges before modification:")
 for atom_id in ["11", "12", "13", "14"]:
     print(top.atoms[atom_id])
 
-top.atoms["11"].charge = -0.3  # CB atom of the first ala residue
-top.atoms["12"].charge = 0.1  # HB1 atom of the first ala residue
-top.atoms["13"].charge = 0.1  # HB2 atom
-top.atoms["14"].charge = 0.1  # HB3 atom
+# %% [markdown]
+# Modify charges
+# %%
+top.atoms["11"].charge = "-0.3"  # CB atom of the first ala residue
+top.atoms["12"].charge = "0.1"  # HB1 atom of the first ala residue
+top.atoms["13"].charge = "0.1"  # HB2 atom
+top.atoms["14"].charge = "0.1"  # HB3 atom
 
 print("\nAtomic charges after modification:")
 for atom_id in ["11", "12", "13", "14"]:
     print(top.atoms[atom_id])
+
+# %% [markdown]
+# Finally, we can write the modified topology to a new file, called "hexala_mod_charges.top". 
+# %% 
+out_path = Path("hexala_mod_charges.top")
+top.to_path(out_path)
+# %% [markdown]
+# # 2. Manipulation of bonded parameters
+# ## 2.1. Local parameter modification
+# Simillar to the partial charges, the force field parameters can be modified of a single bond angle or dihedral. <br>
+# Example: Change the bond length and force constant of the bond between the CB atom (= atom 11) and the CA (= atom 9) atom of the first Ala residue.
+
+# %% [markdown]
+# Initial bond parameters
 # %%
-# Simillarly the parameters can be modified of a single bond, angle, dihedral, etc.
-# Example: Change the bond length and force constant of the bond between the CB atom and the CA atom of the first Ala residue
 top = deepcopy(original_top)
-print("Bond information before modification:")
 print(
     top.bonds[("9", "11")]
-)  # Bond between the CA atom (= atom 9) and the CB atom (= atom 9) of the first Ala residue
-
-print(
-    "\nAs the equilibrium bond length (c0) and the force constant (c1) are None, the bonded parameters for this CA-CB bond are taken from the bond type in the force field:"
-)
+)  # Bond between the CA atom (= atom 9) and the CB atom (= atom 11) of the first Ala residue
+# %% [markdown]
+# As the equilibrium bond length (c0) [nm] and the force constant (c1) [kJ mol-1 nm-2] are `None`, the bonded parameters for this CA-CB bond are taken from the bond type in the force field. The CA-CB bond parameters in the 'amber99sb-star-ildnp.ff' force field are:
+# %%
 print(top.ff.bondtypes[("CA", "CB")])
+# %% [markdown]
+# Modified bond parameters
+# %% 
+top.bonds[("9", "11")].c0 = "0.15"  # New bond length in nm
+top.bonds[("9", "11")].c1 = "500000.0"  # New force constant in kJ mol-1 nm-2
 
-top.bonds[("9", "11")].c0 = 0.15  # New bond length in nm
-top.bonds[("9", "11")].c1 = 500000.0  # New force constant in kJ mol-1 nm-2
-
-print("\nBond information after modification:")
 print(top.bonds[("9", "11")])
-
+# %% [markdown]
+# Finally, we can write the modified topology to a new file, called "hexala_mod_single_bond.top".
 # %%
-# We can also modify the parameters of all bonds of a certain type
-# by overriding the parameters of the bond type in the force field
+out_path = Path("hexala_mod_single_bond.top")
+top.to_path(out_path)
+# %%
+# ## 2.2. Global parameter modification
+# We can also globally modify force field parameters by overriding the parameters of a specific parameter type in the force field. <br>
 # Example: Change the bond length and force constant of all CA-CB bonds
-top = deepcopy(original_top)
-print("CA-CB bond parameters from the force field:")
-print(top.ff.bondtypes[("CA", "CB")])
-
-top.ff.bondtypes[("CA", "CB")].c0 = 0.15  # New bond length in nm
-top.ff.bondtypes[("CA", "CB")].c1 = 500000.0  # New force constant in kJ mol-1 nm-2
-
-print("\nCA-CB bond parameters after modification:")
-print(top.ff.bondtypes[("CA", "CB")])
-
-
+# %% [markdown]
+# Initial CA-CB bond parameters from the force field:
 # %%
-# For more complex modifications of the topology, one can implement a custom Parameterizer class
+top = deepcopy(original_top)
+print(top.ff.bondtypes[("CA", "CB")])
+
+# %% [markdown]
+# Modified CA-CB bond parameters in the force field:
+# %%
+top.ff.bondtypes[("CA", "CB")].c0 = "0.15000"  # New bond length in nm
+top.ff.bondtypes[("CA", "CB")].c1 = "500000.0"  # New force constant in kJ mol-1 nm-2
+
+print(top.ff.bondtypes[("CA", "CB")])
+# %% [markdown]
+# Finally, we can write the modified topology to a new file, called "hexala_mod_all_bond.top".
+# %%
+out_path = Path("hexala_mod_all_bond.top")
+top.to_path(out_path) 
+# %% [markdown]
+# ## 3. Using a custom Parameterizer
+# For more complex modifications of the topology, one can implement a custom `Parameterizer` class. <br>
 # Example: Change the N-CA-CB-HBX proper dihedral parameters only for Ala residues
+# %% [markdown]
+# First the custom `Parameterizer` class, called here `MyParameterizer`, is implemented by inheriting from the base `Parameterizer` class and overriding the `parameterize_topology` method.
+# %%
 class MyParameterizer(Parameterizer):
     def parameterize_topology(
         self, current_topology: Topology, focus_nrs: set[str] | None = None
@@ -99,17 +135,30 @@ class MyParameterizer(Parameterizer):
                     )
         return current_topology
 
-
+# %% [markdown]
+# Now, we can apply the custom parameterizer to the topology.
+# %%
 top = deepcopy(original_top)
 # Assign the new parameterizer to the topology
-top.parametrizer = MyParameterizer()
+top.parametrizer = MyParameterizer() 
 # Please note that the parameters are only updated when needs_parameterization is set to True
 top.needs_parameterization = True
-# Now we can update the parameters
-# a) Directly in the topology instance by calling update_parameters() explicitly
-top.update_parameters()
-# b) when writing the topology to dict
-top_dict = top.to_dict()
-# c) or when writing the topology to a file
-top.to_path("hexala_modified_proper.top")
-# When executing to_dict() or to_path(), the parameters are automatically updated by calling internally update_parameters() if needs_parameterization is True
+# %%
+# Finally, we can update the parameters ... <br>
+# a) ... directly in the topology instance by calling `update_parameters()` explicitly
+# %%
+t = deepcopy(top)
+t.update_parameters()
+# %% [markdown]
+# b) ... by writing the topology to dict
+# %%
+t = deepcopy(top)
+top_dict = t.to_dict()
+# %% [markdown]
+# c) ... by writing the topology to a file
+# %%
+t = deepcopy(top)
+t.to_path("hexala_mod_proper.top")
+# %% [markdown]
+# When executing `to_dict()` or `to_path()`, the parameters are automatically updated by calling internally `update_parameters()` if `needs_parameterization` is True.
+# %%
