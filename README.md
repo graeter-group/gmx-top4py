@@ -12,7 +12,9 @@ The package gmx-top4py provides an python interface to
 * alter force field parameters 
 
 ## Tutorials
-* [ff_params.py](examples/ff_params.py) - Adapting force field parameter with gmx-top4py
+* [basic.py](examples/basic/basic.py) - Basic accessing of topology information with gmx-top4py
+* [advanced.py](examples/advanced/advanced.py) - Advanded accessing of topology information with gmx-top4py
+* [ff_params.py](examples/ff_params/ff_params.py) - Adapting force field parameter with gmx-top4py
 
 ## Installation
 ### From pipy
