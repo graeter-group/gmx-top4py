@@ -1,0 +1,35 @@
+;
+;       Example topology file
+;
+; This topology was generated based on the 6PPL.pdb by Deng, S., McTiernan, N., Wei, X., Arnesen, T., Marmorstein, R. (2020) Nat Commun 11: 818-818
+; 6PPL.pdb was obtained from RCSB PDB (http://www.rcsb.org/): H.M. Berman, J. Westbrook, Z. Feng, G. Gilliland, T.N. Bhat, H. Weissig, I.N. Shindyalov, P.E. Bourne, The Protein Data Bank (2000) Nucleic Acids Research 28: 235-242 https://doi.org/10.1093/nar/28.1.235.
+
+
+; Include forcefield parameters
+#include "amber99sb-ildn.ff/forcefield.itp"
+
+; Include chain topologies
+#include "naa50.itp"
+#include "naa15.itp"
+
+; Include water topology
+#include "amber99sb-ildn.ff/tip3p.itp"
+
+#ifdef POSRES_WATER
+; Position restraint for each water oxygen
+[ position_restraints ]
+;  i funct       fcx        fcy        fcz
+   1    1       1000       1000       1000
+#endif
+
+; Include topology for ions
+#include "amber99sb-ildn.ff/ions.itp"
+
+[ system ]
+; Name
+N-ALPHA-ACETYLTRANSFERASE 50; 5 N-ACETYLTRANSFERASE SAN HOMOLOG,HSAN,N-EPSILON-ACETYLTRANSFERASE 50, ; 6 NATE CATALYTIC SUBUNIT; N-ALPHA-ACETYLTRANSFERASE 15, NATA AUXILIARY SUBUNIT; 13 NMDA RECEPTOR-REGULATED PROTEIN 1, PROTEIN TUBEDOWN-1, TBDN100; N-ALPHA-ACETYLTRANSFERASE 10; 19 HARD1,NATA CATALYTIC SUBUNIT NAA10
+
+[ molecules ]
+; Compound        #mols
+NAA50               1
+NAA15               1
