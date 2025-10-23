@@ -17,8 +17,10 @@ The package gmx-top4py provides an python interface to
 * [ff_params.py](examples/ff_params/ff_params.py) - Adapting force field parameter with gmx-top4py
 
 ## Installation
-### From pipy
-Coming soon
+### From TestPyPi
+```bash
+pip install --index-url https://test.pypi.org/simple --extra-index-url https://pypi.org/simple gmx-top4py
+```
 ### From source via uv
 Clone repository and move into
 ```bash
