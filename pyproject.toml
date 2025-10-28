@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gmx-top4py"
-version = "0.0.1"
+version = "0.0.5"
 description = "A Python library to parse GROMACS topology files and alter associated force fields parameters."
 license-files = ["LICEN[CS]E*"]
 authors = [{ name = "graeter-group", email = "ak-graeter@mpip-mainz.mpg.de"}]
@@ -12,7 +12,7 @@ classifiers = [
   "Programming Language :: Python :: 3",
   "Operating System :: OS Independent",
 ]
-requires-python = ">= 3.10, < 3.12"
+requires-python = ">= 3.10, < 3.15"
 dependencies = ["numpy"]
 keywords = ["GROMACS", "topology"]
 
