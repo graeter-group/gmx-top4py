@@ -238,7 +238,8 @@ def read_top(
         "angle_restraints_z",
         "orientation_restraints",
     )
-
+    if not path.is_file():
+        raise FileNotFoundError(f"topology file {path} not found")
     gmx_builtin_ffs = None
     if use_gmx_dir:
         gmxdir = get_gmx_dir()
