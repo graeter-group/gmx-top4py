@@ -7,7 +7,7 @@ from gmx_top4py.parsing import read_top, write_top
 from gmx_top4py.topology.utils import get_is_selected_moleculetype_f
 # %% [markdown]
 # # 1. Reading a topology file
-# Internally, the `Topology.from_path` class method uses the `read_top` function to parse the topology file into a dictionary, and then creates an instance of the `Topology` object from that dictionary.
+# Internally, the `Topology.from_path` class method uses the `read_top` function to parse the topology file into a dictionary, and then creates an instance of the `Topology` object from that dictionary. <br>
 # So the following two approaches are equivalent:
 # %% [markdown] 
 # a) Create the topology object directly
