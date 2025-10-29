@@ -12,10 +12,10 @@ The package gmx-top4py provides an python interface to
 * alter force field parameters 
 
 ## Tutorials
-You can find runnable examples in the [`examples`](https://github.com/graeter-group/gmx-top4py/tree/main/examples) directory:
-* [basic.py](https://github.com/graeter-group/gmx-top4py/blob/main/examples/basic/basic.py) - Basic accessing of topology information with gmx-top4py
-* [advanced.py](https://github.com/graeter-group/gmx-top4py/blob/main/examples/advanced/advanced.py) - Advanded accessing of topology information with gmx-top4py
-* [ff_params.py](https://github.com/graeter-group/gmx-top4py/blob/main/examples/ff_params/ff_params.py) - Adapting force field parameter with gmx-top4py
+The following tutorials are avaiable as Google Colab notebooks and hence do not require a local installation:
+* [Basic tutorial](https://colab.research.google.com/drive/19zjIw2H5O6InLDQWLXEvrwrZ5w0AL7i1?usp=sharing) - Basic accessing of topology information with gmx-top4py
+* [Advanced tutorial](https://colab.research.google.com/drive/1uWgji2O1N4PnxnYpGc1yV68Qzm-PfVX1?usp=sharing) - Advanded accessing of topology information with gmx-top4py
+* [Force field parameter tutorial](https://colab.research.google.com/drive/1YOPPkCDudqSwd2QV0P7qEcd-1bogrvtY?usp=sharing) - Adapting force field parameters with gmx-top4py
 
 ## Installation
 ### From TestPyPi
