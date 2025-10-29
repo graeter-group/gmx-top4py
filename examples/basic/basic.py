@@ -4,7 +4,7 @@ from pathlib import Path
 from gmx_top4py.topology.topology import Topology
 # %% [markdown]
 # # 1. Reading a topology file
-# Let's read the GROMACS topology file 'urea.top' into a 'Topology' object.
+# Let's read the GROMACS topology file 'urea.top' into a `Topology` object.
 # %%
 top_path = Path("urea.top") # path to the topology file
 top = Topology.from_path(top_path) # read the topology file into a Topology object
@@ -22,7 +22,7 @@ print(top)
 # In case of the 'urea.top' example, there are one urea molecule and 1000 solvent molecules.
 # The second paragraph of the printout provides an overview of the topology properties of the selected molecule type. <br>
 
-#<br>
+# <br>
 # With Moleculetype Urea(1x) with: <br>
 # 8 atoms, <br>
 # 7 bonds, <br>
@@ -49,7 +49,7 @@ print(top)
 # 125 residuetypes <br>
 # <br>
 
-# In the 'urea.top' file, amber99 force field is used.
+# In the 'urea.top' file, the amber99 force field is used.
 # %% [markdown]
 # ## 1.1. The Topology object
 # An instance of the `Topology` class has the following main attributes:
@@ -58,9 +58,9 @@ print(top)
 # %% [markdown]
 # ### 1.1.1. The moleculetypes attribute
 # The `moleculetypes` attribute is a dictionary where the keys are the names of the molecule types and the values are instances of the `MoleculeType` class.
-# %%
-# In the case of the 'urea.top' example, there are two molecule types: 'SOL' and 'Urea(1x)':
 # %% [markdown]
+# In the case of the 'urea.top' example, there are two molecule types: 'SOL' and 'Urea(1x)':
+# %%
 print(top.moleculetypes)
 # %% [markdown]
 # For example, we can access the topology information of the 'Urea(1x)' molecule type as follows:
