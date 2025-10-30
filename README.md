@@ -18,6 +18,11 @@ The following tutorials are avaiable as Google Colab notebooks and hence do not 
 * [Force field parameter tutorial](https://colab.research.google.com/drive/1YOPPkCDudqSwd2QV0P7qEcd-1bogrvtY?usp=sharing) - Adapting force field parameters with gmx-top4py
 
 ## Installation
+### From PyPi
+```bash
+pip install gmx-top4py
+```
+
 ### From TestPyPi
 ```bash
 pip install --index-url https://test.pypi.org/simple --extra-index-url https://pypi.org/simple gmx-top4py
