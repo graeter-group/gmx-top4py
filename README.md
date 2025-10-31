@@ -7,9 +7,12 @@
 GROMACS topology files for python
 
 ## Description
-The package gmx-top4py provides an python interface to
+The `gmx-top4py` project provides a python interface to
 * read and write toplogy and force field information from GROMACS-type top-files
 * alter force field parameters 
+
+The `gmx-top4py` project derives this functionality from the [kimmdy](https://github.com/graeter-group/kimmdy) project, originally developed by the graeter-group, and includes only minor modifications to parts of the original code to operate independently.
+The `kimmdy` project is licensed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html) and, as a derivative work, the `gmx-top4py` project is distributed under the same license.
 
 ## Tutorials
 The following tutorials are avaiable as Google Colab notebooks and hence do not require a local installation:
