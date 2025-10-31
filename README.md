@@ -23,10 +23,6 @@ The following tutorials are avaiable as Google Colab notebooks and hence do not 
 pip install gmx-top4py
 ```
 
-### From TestPyPI
-```bash
-pip install --index-url https://test.pypi.org/simple --extra-index-url https://pypi.org/simple gmx-top4py
-```
 ### From source via uv
 Clone repository and move into
 ```bash
@@ -40,6 +36,20 @@ uv sync
 Activate virtual environment
 ```bash
 source .venv/bin/activate
+```
+Verify install by running the tests
+```bash
+pytest tests
+```
+
+### From source via conda/pip
+Clone repository and move into
+```bash
+git clone git@github.com:graeter-group/gmx-top4py.git
+cd gmx-top4py
+conda create -n gmx-top4py python -y
+conda activate gmx-top4py
+pip install -e '.[dev]' # install with dev dependencies
 ```
 Verify install by running the tests
 ```bash

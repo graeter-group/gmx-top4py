@@ -7,7 +7,7 @@ name = "gmx-top4py"
 version = "0.1.1"
 description = "A Python library to parse GROMACS topology files and alter associated force fields parameters."
 license-files = ["LICEN[CS]E*"]
-authors = [{ name = "graeter-group", email = "ak-graeter@mpip-mainz.mpg.de"}]
+authors = [{ name = "graeter-group"}]
 classifiers = [
   "Programming Language :: Python :: 3",
   "Operating System :: OS Independent",
