@@ -1,5 +1,12 @@
+include pyproject.toml
+include setup.py
 include LICENSE
+include README.md
+include MANIFEST.in
+exclude tox.ini
 
-graft tests
+global-exclude __pycache__
+
 graft src
-graft examples
+prune tests
+prune examples
