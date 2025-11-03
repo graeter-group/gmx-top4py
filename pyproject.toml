@@ -3,9 +3,9 @@ requires = ["setuptools>=61.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "gmx-top4py"
-version = "0.1.4"
-description = "A Python library to parse GROMACS topology files and alter associated force fields parameters."
+name = "gmxtop"
+version = "0.0.1"
+description = "Read and write GROMACS topology files and alter associated force fields parameters."
 license-files = ["LICEN[CS]E*"]
 authors = [{ name = "graeter-group"}]
 classifiers = [
