@@ -1,6 +1,6 @@
-# This file is part of the gmx-top4py project.
+# This file is part of the gmxtop project.
 #
-# The gmx-top4py project is based on or includes code from:
+# The gmxtop project is based on or includes code from:
 #    kimmdy (https://github.com/graeter-group/kimmdy/tree/main)
 #    Copyright (C) graeter-group
 #    Licensed under the GNU General Public License v3.0 (GPLv3).
@@ -36,11 +36,11 @@ from pathlib import Path
 from typing import Optional, TypeAlias, TypedDict, Union
 import numpy as np
 
-from gmx_top4py.utils import get_gmx_dir
+from gmxtop.utils import get_gmx_dir
 
 logger = logging.getLogger(__name__)
 TopologyDict = dict
-"""A raw representation of a topology file returned by [](`~gmx-top4py.parsing.read_top`).
+"""A raw representation of a topology file returned by [](`~gmxtop.parsing.read_top`).
 """
 
 

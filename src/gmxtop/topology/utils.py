@@ -1,6 +1,6 @@
-# This file is part of the gmx-top4py project.
+# This file is part of the gmxtop project.
 #
-# The gmx-top4py project is based on or includes code from:
+# The gmxtop project is based on or includes code from:
 #    kimmdy (https://github.com/graeter-group/kimmdy/tree/main)
 #    Copyright (C) graeter-group
 #    Licensed under the GNU General Public License v3.0 (GPLv3).
@@ -29,13 +29,13 @@ import re
 from itertools import permutations
 from typing import TYPE_CHECKING, Any, Callable, Optional
 
-from gmx_top4py.constants import ION_NAMES, SOLVENT_NAMES
-from gmx_top4py.topology.atomic import AtomId, MoleculeTypeHeader
+from gmxtop.constants import ION_NAMES, SOLVENT_NAMES
+from gmxtop.topology.atomic import AtomId, MoleculeTypeHeader
 
 if TYPE_CHECKING:
     # from config import Config
-    from gmx_top4py.topology.atomic import Atom, AtomicType, AtomicTypes
-    from gmx_top4py.topology.topology import Topology
+    from gmxtop.topology.atomic import Atom, AtomicType, AtomicTypes
+    from gmxtop.topology.topology import Topology
 
 logger = logging.getLogger(__name__)
 

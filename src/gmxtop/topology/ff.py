@@ -1,6 +1,6 @@
-# This file is part of the gmx-top4py project.
+# This file is part of the gmxtop project.
 #
-# The gmx-top4py project is based on or includes code from:
+# The gmxtop project is based on or includes code from:
 #    kimmdy (https://github.com/graeter-group/kimmdy/tree/main)
 #    Copyright (C) graeter-group
 #    Licensed under the GNU General Public License v3.0 (GPLv3).
@@ -29,9 +29,9 @@ import textwrap
 from pathlib import Path
 from typing import Optional
 
-from gmx_top4py.constants import FFFUNC
-from gmx_top4py.parsing import read_top
-from gmx_top4py.topology.atomic import (
+from gmxtop.constants import FFFUNC
+from gmxtop.parsing import read_top
+from gmxtop.topology.atomic import (
     AngleId,
     AngleType,
     AtomId,
@@ -44,8 +44,8 @@ from gmx_top4py.topology.atomic import (
     ProperDihedralId,
     ResidueType,
 )
-from gmx_top4py.topology.utils import get_top_section
-from gmx_top4py.utils import get_gmx_dir
+from gmxtop.topology.utils import get_top_section
+from gmxtop.utils import get_gmx_dir
 
 logger = logging.getLogger(__name__)
 
