@@ -9,7 +9,7 @@ GROMACS topology files for python
 **!!!!!!!!!!!!!!!!!!!!!! DEPRECATED !!!!!!!!!!!!!!!!!!!!!!!! <br>
 This projected has been renamed to gmxtop.<br>
 Please use `pip install gmxtop` instead.<br>
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!** <br> 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!** <br> 
 
 ## Description
 The `gmx-top4py` project provides a python interface to
