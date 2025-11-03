@@ -6,6 +6,10 @@
 
 GROMACS topology files for python
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!! DEPRECATED !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This projected has been renamed to gmxtop. Please use `pip install gmxtop` instead.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+
 ## Description
 The `gmx-top4py` project provides a python interface to
 * read and write toplogy and force field information from GROMACS-type top-files
