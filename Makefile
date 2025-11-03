@@ -1,7 +1,7 @@
 .PHONY: Makefile setup-docs preview docs clear-docs watch
 
 test:
-	pytest tests --cov=gmx_top4py --cov-report=term-missing
+	pytest tests --cov=gmxtop --cov-report=term-missing
 
 format:
 	black src tests
