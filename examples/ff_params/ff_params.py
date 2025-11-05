@@ -1,7 +1,7 @@
 # %%
-# This file is part of the gmx-top4py project.
+# This file is part of the gmxtop project.
 #
-# The gmx-top4py project is based on or includes code from:
+# The gmxtop project is based on or includes code from:
 #    kimmdy (https://github.com/graeter-group/kimmdy/tree/main)
 #    Copyright (C) graeter-group
 #    Licensed under the GNU General Public License v3.0 (GPLv3).
@@ -25,13 +25,13 @@
 from pathlib import Path
 from copy import deepcopy
 
-from gmx_top4py.topology.topology import Topology
-from gmx_top4py.parsing import read_top
-from gmx_top4py.parameterizing import Parameterizer
-from gmx_top4py.topology.atomic import Dihedral
+from gmxtop.topology.topology import Topology
+from gmxtop.parsing import read_top
+from gmxtop.parameterizing import Parameterizer
+from gmxtop.topology.atomic import Dihedral
 # %% [markdown]
 # # Manipulation of force field parameters
-# In this example, we demonstrate how to manipulate force field parameters in a topology file using gmx-top4py.
+# In this example, we demonstrate how to manipulate force field parameters in a topology file using gmxtop.
 # We will use a topology file for a hexamer of alanine ('hexala.top') parameterized with the 'amber99sb-star-ildnp.ff' force field.
 
 # %% [markdown]

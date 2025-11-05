@@ -1,7 +1,7 @@
 # %%
-# This file is part of the gmx-top4py project.
+# This file is part of the gmxtop project.
 #
-# The gmx-top4py project is based on or includes code from:
+# The gmxtop project is based on or includes code from:
 #    kimmdy (https://github.com/graeter-group/kimmdy/tree/main)
 #    Copyright (C) graeter-group
 #    Licensed under the GNU General Public License v3.0 (GPLv3).
@@ -25,9 +25,9 @@
 from pathlib import Path
 from copy import deepcopy
 
-from gmx_top4py.topology.topology import Topology
-from gmx_top4py.parsing import read_top, write_top
-from gmx_top4py.topology.utils import get_is_selected_moleculetype_f
+from gmxtop.topology.topology import Topology
+from gmxtop.parsing import read_top, write_top
+from gmxtop.topology.utils import get_is_selected_moleculetype_f
 # %% [markdown]
 # # 1. Reading a topology file
 # Internally, the `Topology.from_path` class method uses the `read_top` function to parse the topology file into a dictionary, and then creates an instance of the `Topology` object from that dictionary. <br>

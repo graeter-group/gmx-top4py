@@ -1,6 +1,6 @@
-# This file is part of the gmx-top4py project.
+# This file is part of the gmxtop project.
 #
-# The gmx-top4py project is based on or includes code from:
+# The gmxtop project is based on or includes code from:
 #    kimmdy (https://github.com/graeter-group/kimmdy/tree/main)
 #    Copyright (C) graeter-group
 #    Licensed under the GNU General Public License v3.0 (GPLv3).
@@ -32,8 +32,8 @@ import logging
 from dataclasses import dataclass, field
 from typing import Optional, Union
 
-from gmx_top4py.constants import FFFUNC
-from gmx_top4py.utils import field_or_none
+from gmxtop.constants import FFFUNC
+from gmxtop.utils import field_or_none
 
 logger = logging.getLogger(__name__)
 

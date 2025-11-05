@@ -1,6 +1,6 @@
-# This file is part of the gmx-top4py project.
+# This file is part of the gmxtop project.
 #
-# The gmx-top4py project is based on or includes code from:
+# The gmxtop project is based on or includes code from:
 #    kimmdy (https://github.com/graeter-group/kimmdy/tree/main)
 #    Copyright (C) graeter-group
 #    Licensed under the GNU General Public License v3.0 (GPLv3).
@@ -31,16 +31,16 @@ import pytest
 from hypothesis import HealthCheck, Phase, given, settings
 from hypothesis import strategies as st
 
-from gmx_top4py.topology.atomic import *
-from gmx_top4py.utils import get_gmx_dir
-from gmx_top4py.parsing import TopologyDict, read_top
-from gmx_top4py.topology.utils import (
+from gmxtop.topology.atomic import *
+from gmxtop.utils import get_gmx_dir
+from gmxtop.parsing import TopologyDict, read_top
+from gmxtop.topology.utils import (
     get_residue_by_bonding,
     match_atomic_item_to_atomic_type,
     get_protein_section,
     get_selected_section,
 )
-from gmx_top4py.topology.topology import Topology
+from gmxtop.topology.topology import Topology
 
 
 @pytest.fixture(scope="module")

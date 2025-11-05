@@ -1,6 +1,6 @@
-# This file is part of the gmx-top4py project.
+# This file is part of the gmxtop project.
 #
-# The gmx-top4py project is based on or includes code from:
+# The gmxtop project is based on or includes code from:
 #    kimmdy (https://github.com/graeter-group/kimmdy/tree/main)
 #    Copyright (C) graeter-group
 #    Licensed under the GNU General Public License v3.0 (GPLv3).
@@ -30,16 +30,16 @@ from typing import Callable, Optional, Union
 
 # from kimmdy.recipe import RecipeStep, Bind, Break
 
-from gmx_top4py.constants import (
+from gmxtop.constants import (
     ATOM_ID_FIELDS,
     ATOMTYPE_BONDORDER_FLAT,
     FFFUNC,
     RESNR_ID_FIELDS,
 )
-from gmx_top4py.parsing import TopologyDict, empty_section, read_top, write_top
-from gmx_top4py.parameterizing import BasicParameterizer, Parameterizer
+from gmxtop.parsing import TopologyDict, empty_section, read_top, write_top
+from gmxtop.parameterizing import BasicParameterizer, Parameterizer
 
-from gmx_top4py.topology.atomic import (
+from gmxtop.topology.atomic import (
     Angle,
     Atom,
     Bond,
@@ -55,8 +55,8 @@ from gmx_top4py.topology.atomic import (
     ResidueType,
     Settle,
 )
-from gmx_top4py.topology.ff import FF
-from gmx_top4py.topology.utils import (
+from gmxtop.topology.ff import FF
+from gmxtop.topology.utils import (
     attributes_to_list,
     get_moleculetype_atomics,
     get_moleculetype_header,
@@ -67,9 +67,9 @@ from gmx_top4py.topology.utils import (
     is_not_solvent_or_ion,
     set_top_section,
 )
-from gmx_top4py.utils import TopologyAtomAddress
+from gmxtop.utils import TopologyAtomAddress
 
-logger = logging.getLogger("gmx_top4py.topology")
+logger = logging.getLogger("gmxtop.topology")
 
 
 class MoleculeType:
@@ -749,7 +749,7 @@ class Topology:
     ----------
     top
         A dictionary containing the parsed topology data, produced by
-        [](`gmx_top4py.parsing.read_top`)
+        [](`gmxtop.parsing.read_top`)
     parametrizer
         The parametrizer to use when reparametrizing the topology.
     is_selected_moleculetype_f

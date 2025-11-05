@@ -3,9 +3,9 @@ requires = ["setuptools>=61.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "gmx-top4py"
-version = "0.1.5"
-description = "A Python library to parse GROMACS topology files and alter associated force fields parameters."
+name = "gmxtop"
+version = "0.0.1"
+description = "Read and write GROMACS topology files and alter associated force fields parameters."
 license-files = ["LICEN[CS]E*"]
 authors = [{ name = "graeter-group"}]
 classifiers = [
@@ -25,14 +25,14 @@ package-dir = { "" = "src" }
 include-package-data = true
 
 [tool.setuptools.package-data]
-"gmx_top4py" = [ "py.typed" ]
+"gmxtop" = [ "py.typed" ]
 
 [tool.setuptools.packages.find]
 where=["src"]
 namespaces = false
 
 [tool.uv.sources]
-"gmx_top4py" = { workspace = true }
+"gmxtop" = { workspace = true }
 
 [project.optional-dependencies]
 dev = [

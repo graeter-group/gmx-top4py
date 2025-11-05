@@ -1,7 +1,7 @@
 # %%
-# This file is part of the gmx-top4py project.
+# This file is part of the gmxtop project.
 #
-# The gmx-top4py project is based on or includes code from:
+# The gmxtop project is based on or includes code from:
 #    kimmdy (https://github.com/graeter-group/kimmdy/tree/main)
 #    Copyright (C) graeter-group
 #    Licensed under the GNU General Public License v3.0 (GPLv3).
@@ -24,7 +24,7 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 from pathlib import Path
 
-from gmx_top4py.topology.topology import Topology
+from gmxtop.topology.topology import Topology
 # %% [markdown]
 # # 1. Reading a topology file
 # Let's read the GROMACS topology file 'urea.top' into a `Topology` object.
